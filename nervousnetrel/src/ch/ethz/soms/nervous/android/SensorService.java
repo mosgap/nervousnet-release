@@ -178,10 +178,9 @@ public class SensorService extends Service implements SensorEventListener, Noise
 					doCollect = scPressure.isCollect();
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorPressure, SensorManager.SENSOR_DELAY_NORMAL) : false;
 					sensorCollectStatus = scPressure;
-				} else if (sensorId == SensorDescGyroscope.SENSOR_ID) {
-					scGyroscope.setMeasureStart(startTime);
-					doCollect = scGyroscope.isCollect();
-					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorGyroscope, SensorManager.SENSOR_DELAY_NORMAL) : false;
+				} else if (sensorId == SensorDescGyroscope.SENSOR_ID) {					
+					doCollect = scGyroscope.isCollect();					
+					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorGyroscope, SensorManager.SENSOR_DELAY_NORMAL) : false;					
 					sensorCollectStatus = scGyroscope;
 				} else if (sensorId == SensorDescHumidity.SENSOR_ID) {
 					scHumidity.setMeasureStart(startTime);

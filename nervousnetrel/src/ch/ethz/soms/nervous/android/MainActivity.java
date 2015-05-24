@@ -105,6 +105,7 @@ public class MainActivity extends Activity {
 		btnOn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				System.out.println("ON clicked");
 				vibrator.vibrate(vibDuration);
 				switchServiceOnOff();
 			}
@@ -113,6 +114,7 @@ public class MainActivity extends Activity {
 		btnOff.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				System.out.println("OFF clicked");
 				vibrator.vibrate(vibDuration);
 				switchServiceOnOff();
 			}
@@ -241,7 +243,7 @@ public class MainActivity extends Activity {
 				@Override
 				public void onAnimationRepeat(Animation animation) {
 				}
-
+ 
 				@Override
 				public void onAnimationEnd(Animation animation) {
 					btnOff.setVisibility(Button.INVISIBLE);
@@ -511,9 +513,9 @@ public class MainActivity extends Activity {
 				Intent intent = null;
 				switch (selectedActivity) {
 				case 0:
-//					intent = new Intent(MainActivity.this,
-//							ServerDetailsActivity.class);
-//					intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+					intent = new Intent(MainActivity.this,
+							MainActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 					// TODO nothing yet
 					break;
 				case 1:
@@ -524,6 +526,7 @@ public class MainActivity extends Activity {
 				case 2:
 					intent = new Intent(MainActivity.this,
 							SensorsStatisticsActivity.class);
+					intent.putExtra("serviceSwitchIsChecked", serviceRunning);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 					break;
 				case 3:
