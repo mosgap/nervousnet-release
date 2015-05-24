@@ -18,6 +18,13 @@ public class SensorStoreTree {
 		this.currentPage = currentPage;
 	}
 
+	/**
+	 * Binary search for the next timestamp after @param timestamp
+	 * 
+	 * @param timestamp
+	 * @param mode
+	 * @return offset to start reading from in the page
+	 */
 	public long findEntry(long timestamp, boolean mode) {
 		long fileOffset = -1;
 		RandomAccessFile raf = null;
