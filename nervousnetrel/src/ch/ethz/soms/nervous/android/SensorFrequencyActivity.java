@@ -1,9 +1,5 @@
 package ch.ethz.soms.nervous.android;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import ch.ethz.soms.nervous.android.sensors.SensorDescAccelerometer;
 import ch.ethz.soms.nervous.android.sensors.SensorDescBLEBeacon;
 import ch.ethz.soms.nervous.android.sensors.SensorDescBattery;
@@ -21,29 +17,17 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class SensorFrequencyActivity extends Activity {
 
@@ -51,20 +35,41 @@ public class SensorFrequencyActivity extends Activity {
 	String[] sensorNames = { "Accelerometer", "Battery", "BLEBeacon",
 			"Connectivity", "Gyroscope", "Humidity", "Light", "Magnetic",
 			"Noise", "Pressure", "Proximity", "Temperature" };
-	String[] frequencyUnits = { "sec" , "min", "hours" };
-	long[] sensorIds = { 
-		SensorDescAccelerometer.SENSOR_ID, SensorDescBattery.SENSOR_ID, SensorDescBLEBeacon.SENSOR_ID, 
-		SensorDescConnectivity.SENSOR_ID, SensorDescGyroscope.SENSOR_ID, SensorDescHumidity.SENSOR_ID, 
-		SensorDescLight.SENSOR_ID, SensorDescMagnetic.SENSOR_ID, SensorDescNoise.SENSOR_ID, 
-		SensorDescPressure.SENSOR_ID, SensorDescProximity.SENSOR_ID, SensorDescTemperature.SENSOR_ID };
+	String[] arrFrequency = { "30 sec", "1 min", "2 min", "3 min", "5 min",
+			"10 min", "15 min", "20 min", "30 min", "45 min", "1 h", "2 h",
+			"10 h", "12 h", "1 d", "2 d", "5 d", "1 w", "2 w", "1 month",
+			"2 months", "3 months", "6 months", "1 year" };
+	long[] sensorIds = { SensorDescAccelerometer.SENSOR_ID,
+			SensorDescBattery.SENSOR_ID, SensorDescBLEBeacon.SENSOR_ID,
+			SensorDescConnectivity.SENSOR_ID, SensorDescGyroscope.SENSOR_ID,
+			SensorDescHumidity.SENSOR_ID, SensorDescLight.SENSOR_ID,
+			SensorDescMagnetic.SENSOR_ID, SensorDescNoise.SENSOR_ID,
+			SensorDescPressure.SENSOR_ID, SensorDescProximity.SENSOR_ID,
+			SensorDescTemperature.SENSOR_ID };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sensor_frequency);
 
+		
+		
 		ArrayAdapter<String> freqUnitArrAdapter = new ArrayAdapter<String>(
-				this, android.R.layout.simple_spinner_item, frequencyUnits);		
+				this, android.R.layout.simple_spinner_item, arrFrequency){
+		    public View getView(int position, View convertView,ViewGroup parent) {
+		        View v = super.getView(position, convertView, parent);
+		        ((TextView) v).setGravity(Gravity.END);
+		        return v;
+		    }
+		    
+			@Override
+			public View getDropDownView(int position, View convertView,
+					ViewGroup parent) {
+				View v = super.getDropDownView(position, convertView, parent);
+				((TextView) v).setGravity(Gravity.CENTER_VERTICAL | Gravity.END);
+				return v;
+			}
+		};
 		freqUnitArrAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -95,84 +100,29 @@ public class SensorFrequencyActivity extends Activity {
 					null);
 			final TextView txtSensorName = (TextView) rowView
 					.findViewById(R.id.txt_SensorFreq_SensorItem);
-
-			final Spinner unitSpinner = (Spinner) rowView
-					.findViewById(R.id.spinner_sensor_frequency);
-			unitSpinner.setAdapter(freqUnitArrAdapter);
-
-			final EditText txtTimeValue = (EditText) rowView
-					.findViewById(R.id.txt_sensor_frequency_number);
 			txtSensorName.setText(sensorName[position]);
+
+			final Spinner spinnerSensorFreq = (Spinner) rowView
+					.findViewById(R.id.spinner_sensor_frequency);
+			spinnerSensorFreq.setAdapter(freqUnitArrAdapter);
 
 			final SharedPreferences settings = context.getSharedPreferences(
 					NervousStatics.SENSOR_FREQ, 0);
-			float frequencyValue = settings.getFloat(
-					Long.toHexString(sensorIds[position]) + "_freqValue", 4f);
-			int freqUnitIndex = settings.getInt(
-					Long.toHexString(sensorIds[position]) + "_freqUnit", 0);
+			int sensFreqIndex = settings.getInt(
+					Long.toHexString(sensorIds[position]) + "_freqIndex", 0);
 
-			Log.d("###SensFreqAct###", position + ": " + frequencyValue + "  ("
-					+ freqUnitIndex + ")");
-			txtTimeValue.setText(frequencyValue + "");
-			unitSpinner.setSelection(freqUnitIndex);
+//			Log.d("###SensFreqAct###", position + ": " + frequencyValue + "  ("
+//					+ sensFreqIndex + ")");
+			spinnerSensorFreq.setSelection(sensFreqIndex);
 
-			txtTimeValue.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-				@Override
-				public void onFocusChange(View v, boolean hasFocus) {
-					if (!hasFocus) {
-						float newVal;
-						try {
-							newVal = Float.parseFloat(((EditText) v).getText()
-									.toString());
-						} catch (Exception e) {
-							return;
-						}
-
-						Editor edit = settings.edit();
-						edit.putFloat(Long.toHexString(sensorIds[position])
-								+ "_freqValue", newVal);
-						edit.commit();
-						//Log.d("###SensFreqAct###", "Changed to " + newVal);
-					}
-				}
-			});
-
-			txtTimeValue
-					.setOnEditorActionListener(new OnEditorActionListener() {
-
-						@Override
-						public boolean onEditorAction(TextView v, int actionId,
-								KeyEvent event) {
-							if (actionId == EditorInfo.IME_NULL
-									&& event.getAction() == KeyEvent.ACTION_DOWN) {
-								float newVal;
-								try {
-									newVal = Float.parseFloat(((EditText) v)
-											.getText().toString());
-								} catch (Exception e) {
-									return true;
-								}
-
-								Editor edit = settings.edit();
-								edit.putFloat(
-										Long.toHexString(sensorIds[position])
-												+ "_freqValue", newVal);
-								edit.commit();
-
-							}
-							return true;
-						}
-					});
-
-			unitSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			spinnerSensorFreq.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 				@Override
 				public void onItemSelected(AdapterView<?> parent, View view,
-						int position, long id) {
+						int freqIndex, long id) {
 					Editor edit = settings.edit();
 					edit.putInt(Long.toHexString(sensorIds[position])
-							+ "_freqUnit", position);
+							+ "_freqIndex", freqIndex);
 					edit.commit();
 					// toastToScreen("saved: " + position, false);
 				}
@@ -191,24 +141,6 @@ public class SensorFrequencyActivity extends Activity {
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.sensor_frequency, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 	@Override
 	public void onDestroy() {
@@ -223,7 +155,7 @@ public class SensorFrequencyActivity extends Activity {
 			UploadService.startService(this);
 		}
 	}
-	
+
 	public void toastToScreen(String msg, boolean lengthLong) {
 
 		int toastLength = lengthLong ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT;
