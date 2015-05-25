@@ -522,9 +522,8 @@ public class MainActivity extends Activity {
 				Intent intent = null;
 				switch (selectedActivity) {
 				case 0:
-					intent = new Intent(MainActivity.this, MainActivity.class);
+					intent = new Intent(MainActivity.this, MainAppsActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-					// TODO nothing yet
 					break;
 				case 1:
 					intent = new Intent(MainActivity.this,

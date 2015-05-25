@@ -48,7 +48,7 @@
             android:name=".IfThisThenThatActivity"
             android:label="@string/title_activity_if_this_then_that"
             android:theme="@style/AppTheme" >
-        </activity>
+        </activity>
         -->
         <activity
             android:name=".SensorLoggingToggleActivity"
@@ -67,7 +67,6 @@
             android:name=".ChartsWebViewActivity"
             android:label="@string/title_activity_charts_webview" >
         </activity>
-               
         <activity
             android:name=".ServerDetailsActivity"
             android:label="@string/title_activity_server_details"
@@ -81,14 +80,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.ethz.soms.nervous.android.MainActivity" />
         </activity>
-        
+
         <!--
         <activity
             android:name=".SettingsActivity"
             android:label="SettingsTest"
             android:theme="@style/AppTheme" >
-        </activity>
+        </activity>
         -->
+        <activity
+            android:name=".MainAppsActivity"
+            android:label="@string/title_activity_main_apps"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.ethz.soms.nervous.android.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
