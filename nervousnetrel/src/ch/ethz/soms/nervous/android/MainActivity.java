@@ -38,19 +38,18 @@ public class MainActivity extends Activity {
 	public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
 	private static final int REQUEST_ENABLE_BT = 0;
-	
+
 	private boolean serviceRunning;
-	
+
 	private static final int vibDuration = 50;
 	int selectedActivity;
 	private ImageButton btnMain, btnPrivacy, btnDataVis, btnColFreq, btnOn,
-			btnOff,btnServerInfo;
+			btnOff, btnServerInfo;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);				
+		setContentView(R.layout.activity_main);
 
 		final Vibrator vibrator = (Vibrator) this
 				.getSystemService(VIBRATOR_SERVICE);
@@ -107,7 +106,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				System.out.println("ON clicked");
 				vibrator.vibrate(vibDuration);
-				switchServiceOnOff();
+				startStopSensorService(false);
+				refreshOnOffButtons();
 			}
 		});
 
@@ -116,7 +116,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				System.out.println("OFF clicked");
 				vibrator.vibrate(vibDuration);
-				switchServiceOnOff();
+				startStopSensorService(true);
+				refreshOnOffButtons();
 			}
 		});
 
@@ -128,13 +129,13 @@ public class MainActivity extends Activity {
 				animateAllButtonsOut(btnServerInfo);
 			}
 		});
-		
+
 		updateServiceInfo();
 		if (!serviceRunning) {
 			askServiceEnable();
 		}
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -142,14 +143,17 @@ public class MainActivity extends Activity {
 	}
 
 	private void askServiceEnable() {
-		final SharedPreferences prefs = getSharedPreferences(NervousStatics.SERVICE_PREFS, 0);
+		final SharedPreferences prefs = getSharedPreferences(
+				NervousStatics.SERVICE_PREFS, 0);
 		boolean showServiceDialog = prefs.getBoolean("ShowServiceDialog", true);
 		if (showServiceDialog) {
 			View checkBoxView = View.inflate(this, R.layout.checkbox, null);
-			CheckBox checkBox = (CheckBox) checkBoxView.findViewById(R.id.checkbox);
+			CheckBox checkBox = (CheckBox) checkBoxView
+					.findViewById(R.id.checkbox);
 			checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				@Override
-				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				public void onCheckedChanged(CompoundButton buttonView,
+						boolean isChecked) {
 					Editor edit = prefs.edit();
 					edit.putBoolean("ShowServiceDialog", !isChecked);
 					edit.commit();
@@ -162,21 +166,23 @@ public class MainActivity extends Activity {
 			builder.setTitle(getString(R.string.contribute));
 			builder.setView(checkBoxView);
 			builder.setMessage(getString(R.string.contribute_long));
-			builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+			builder.setPositiveButton(getString(R.string.yes),
+					new DialogInterface.OnClickListener() {
 
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-					startStopSensorService(true);
-				}
-			});
-			builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							startStopSensorService(true);
+						}
+					});
+			builder.setNegativeButton(getString(R.string.no),
+					new DialogInterface.OnClickListener() {
 
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-				}
-			});
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+						}
+					});
 			builder.create().show();
 		}
 	}
@@ -188,21 +194,25 @@ public class MainActivity extends Activity {
 			BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
 
 			if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) {
-				Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+				Intent enableBtIntent = new Intent(
+						BluetoothAdapter.ACTION_REQUEST_ENABLE);
 				startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 			}
 		}
 	}
 
-	public void startStopSensorService(boolean on) {		
+	public void startStopSensorService(boolean on) {
 		if (on) {
 			SensorService.startService(this);
 			UploadService.startService(this);
 			serviceRunning = true;
 
-			// If the user wants to collect BT/BLE data, ask to enable bluetooth if disabled
-			SensorConfiguration sc = SensorConfiguration.getInstance(getApplicationContext());
-			SensorCollectStatus scs = sc.getInitialSensorCollectStatus(SensorDescBLEBeacon.SENSOR_ID);
+			// If the user wants to collect BT/BLE data, ask to enable bluetooth
+			// if disabled
+			SensorConfiguration sc = SensorConfiguration
+					.getInstance(getApplicationContext());
+			SensorCollectStatus scs = sc
+					.getInitialSensorCollectStatus(SensorDescBLEBeacon.SENSOR_ID);
 			if (scs.isCollect()) {
 				// This will only work on API level 18 or higher
 				initializeBluetooth();
@@ -216,11 +226,7 @@ public class MainActivity extends Activity {
 		updateServiceInfo();
 	}
 
-	protected void switchServiceOnOff() {
-		serviceRunning = !serviceRunning;
-
-		startStopSensorService(serviceRunning);
-		
+	protected void refreshOnOffButtons() {
 		RotateAnimation rotAnim;
 		rotAnim = new RotateAnimation(0, 360, btnOff.getX()
 				+ (btnOff.getWidth() / 2), btnOff.getY()
@@ -243,7 +249,7 @@ public class MainActivity extends Activity {
 				@Override
 				public void onAnimationRepeat(Animation animation) {
 				}
- 
+
 				@Override
 				public void onAnimationEnd(Animation animation) {
 					btnOff.setVisibility(Button.INVISIBLE);
@@ -276,12 +282,15 @@ public class MainActivity extends Activity {
 			});
 		}
 
+		// Off button: Fading and rotation
+		// On button: Only rotation
 		btnOff.startAnimation(sAll);
 		btnOn.startAnimation(rotAnim);
 	}
-	
+
 	public void updateServiceInfo() {
-		serviceRunning = SensorService.isServiceRunning(this) && UploadService.isServiceRunning(this);		
+		serviceRunning = SensorService.isServiceRunning(this)
+				&& UploadService.isServiceRunning(this);
 	}
 
 	@Override
@@ -296,7 +305,7 @@ public class MainActivity extends Activity {
 		TestQueries tq = new TestQueries(getApplicationContext(), getFilesDir());
 
 		Intent intent;
-		switch (item.getItemId()) {		
+		switch (item.getItemId()) {
 		case R.id.menu_TestQuery_Battery_MinBattery:
 			tq.minBattery();
 			break;
@@ -341,20 +350,20 @@ public class MainActivity extends Activity {
 			break;
 		case R.id.menu_TestQuery_Light_Prox_Kmean:
 			// TODO @Priya this method does not exist
-//			tq.lightProxKMean();
-			break;		
+			// tq.lightProxKMean();
+			break;
 		case R.id.menu_SensorsStatistics:
-	            intent = new Intent(this, SensorsStatisticsActivity.class);
-	            intent.putExtra("serviceSwitchIsChecked", serviceRunning);
-	            startActivity(intent);
-	            break;
+			intent = new Intent(this, SensorsStatisticsActivity.class);
+			intent.putExtra("serviceSwitchIsChecked", serviceRunning);
+			startActivity(intent);
+			break;
 		default:
 			break;
 
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void resetButtons(int maxX, int maxY) {
 		// Main Button
 		float scale = 0.4f;
@@ -404,7 +413,7 @@ public class MainActivity extends Activity {
 
 		resetButtonAnimateIn(btnColFreq, newW, newH, newX, newY);
 
-		//Server Info Button
+		// Server Info Button
 		scale = 0.2f;
 		w = maxX * scale;
 		h = maxY * scale;
@@ -415,7 +424,7 @@ public class MainActivity extends Activity {
 		newY = (maxY * 0.9f) - (newH / 2);
 
 		resetButtonAnimateIn(btnServerInfo, newW, newH, newX, newY);
-		
+
 		// On-Off button
 		scale = 0.13f;
 		w = maxX * scale;
@@ -440,7 +449,7 @@ public class MainActivity extends Activity {
 			btnOn.setEnabled(false);
 			resetButtonAnimateIn(btnOff, newW, newH, newX, newY);
 			resetButtonPos(btnOn, newW, newH, newX, newY);
-		}		
+		}
 	}
 
 	private void resetButtonAnimateIn(ImageButton btn, int newW, int newH,
@@ -513,8 +522,7 @@ public class MainActivity extends Activity {
 				Intent intent = null;
 				switch (selectedActivity) {
 				case 0:
-					intent = new Intent(MainActivity.this,
-							MainActivity.class);
+					intent = new Intent(MainActivity.this, MainActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 					// TODO nothing yet
 					break;
@@ -577,13 +585,19 @@ public class MainActivity extends Activity {
 		if (!selectedButton.equals(btnServerInfo)) {
 			animateButtonOut(btnServerInfo);
 		}
-		animateButtonOut(btnOn);
-		animateButtonOut(btnOff);
+
+		// only animate on/off button out if visible
+		if (btnOn.getVisibility() == Button.VISIBLE) {
+			animateButtonOut(btnOn);
+		}
+		if (btnOff.getVisibility() == Button.VISIBLE) {
+			animateButtonOut(btnOff);
+		}
 	}
 
 	public void toastToScreen(String msg, boolean lengthLong) {
 
 		int toastLength = lengthLong ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT;
 		Toast.makeText(getApplicationContext(), msg, toastLength).show();
-	}	
+	}
 }
