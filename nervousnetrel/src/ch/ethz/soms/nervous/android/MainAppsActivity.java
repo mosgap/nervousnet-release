@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,15 +21,17 @@ public class MainAppsActivity extends Activity {
 
 	ListView listMainApps;
 	private static final int vibDuration = 50;
-	
+
 	class MainApp {
 		String name, description, playStoreLink;
 		int imageResource;
 
-		public MainApp(String sName, String sDescription, String sAppStoreLink) {
+		public MainApp(String sName, String sDescription, String sAppStoreLink,
+				int appimage) {
 			name = sName;
 			description = sDescription;
 			playStoreLink = sAppStoreLink;
+			imageResource = appimage;
 		}
 	}
 
@@ -43,7 +46,7 @@ public class MainAppsActivity extends Activity {
 				MainAppsActivity.this, arrMainApp);
 		listMainApps = (ListView) findViewById(R.id.list_MainApps);
 		listMainApps.setAdapter(adapter);
-		
+
 		final Vibrator vibrator = (Vibrator) this
 				.getSystemService(VIBRATOR_SERVICE);
 		listMainApps.setOnItemClickListener(new OnItemClickListener() {
@@ -53,13 +56,16 @@ public class MainAppsActivity extends Activity {
 					int position, long id) {
 				try {
 					vibrator.vibrate(vibDuration);
-//				    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(arrMainApp[position].playStoreLink));
+					// startActivity(new Intent(Intent.ACTION_VIEW,
+					// Uri.parse("market://details?id=" + appPackageName)));
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri
+							.parse(arrMainApp[position].playStoreLink));
 					startActivity(browserIntent);
 				} catch (android.content.ActivityNotFoundException anfe) {
-					System.out.println("Tried to open " + arrMainApp[position].playStoreLink);
+					System.out.println("Tried to open "
+							+ arrMainApp[position].playStoreLink);
 				}
-				
+
 			}
 		});
 	}
@@ -68,16 +74,18 @@ public class MainAppsActivity extends Activity {
 		ArrayList<MainApp> arrListMA = new ArrayList<MainAppsActivity.MainApp>();
 
 		// TODO: Sid get list from server
-		arrListMA.add(new MainApp("Earthquake",
-				"Detects earthquake and shows epicenter", "http://www.omfgdogs.com"));
 		arrListMA
 				.add(new MainApp(
-						"Traffic De-Jammer",
-						"Lets you know of curret traffic jams and shows alternative routes",
-						"http://www.google.com"));
-		arrListMA.add(new MainApp("Nervousnet Musicband",
-				"Record a song with your fellow nervousnet friends",
-				"http://www.fallingfalling.com"));
+						"nervousnetedu",
+						"Collects data",
+						"https://play.google.com/store/apps/details?id=ch.ethz.soms.nervousedu.android&hl=en",
+						R.drawable.appimages_nervousnetedu));
+		arrListMA
+				.add(new MainApp(
+						"nervousnet for 31c3",
+						"Collects anonymous data at the 31c3 Conference",
+						"https://play.google.com/store/apps/details?id=ch.ethz.soms.nervous.android&hl=en",
+						R.drawable.appimages_nervousnet31c3));
 
 		return arrListMA.toArray(new MainApp[arrListMA.size()]);
 	}
@@ -101,11 +109,12 @@ public class MainAppsActivity extends Activity {
 					.findViewById(R.id.txt_MainAppName);
 			final TextView txtDesc = (TextView) rowView
 					.findViewById(R.id.txt_MainAppDesc);
-
+			final ImageView imgPic = (ImageView) rowView
+					.findViewById(R.id.img_mainAppImage);
 
 			txtTitle.setText(arrMainApp[position].name);
 			txtDesc.setText(arrMainApp[position].description);
-
+			imgPic.setImageResource(arrMainApp[position].imageResource);
 			return rowView;
 		}
 	}

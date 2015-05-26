@@ -11,7 +11,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_launcher" />
+        android:adjustViewBounds="true"
+        android:maxWidth="75dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/appimages_nervousnet31c3" />
 
     <TextView
         android:id="@+id/txt_MainAppName"
@@ -25,7 +28,8 @@
         android:paddingLeft="5dp"
         android:text="Accelerometer"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txt_MainAppDesc"
