@@ -45,6 +45,7 @@ public class SimpleUploadWorker extends ConcurrentSocketWorker {
 						byte[] uuid = UUID.toByteArray(huuid, luuid);
 
 						long sensorId = su.getSensorId();
+						System.out.println(sensorId);
 						long uploadTime = su.getUploadTime();
 						List<SensorData> sensorValues = su.getSensorValuesList();
 

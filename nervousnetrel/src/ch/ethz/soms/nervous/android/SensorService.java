@@ -171,42 +171,42 @@ public class SensorService extends Service implements SensorEventListener, Noise
 				if (sensorId == SensorDescAccelerometer.SENSOR_ID) {
 					scAccelerometer.setMeasureStart(startTime);
 					doCollect = scAccelerometer.isCollect();
-					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL) : false;
-					sensorCollectStatus = scAccelerometer;
+					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL) : false;					
+					sensorCollectStatus = scAccelerometer;					
 				} else if (sensorId == SensorDescPressure.SENSOR_ID) {
 					scPressure.setMeasureStart(startTime);
 					doCollect = scPressure.isCollect();
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorPressure, SensorManager.SENSOR_DELAY_NORMAL) : false;
-					sensorCollectStatus = scPressure;
+					sensorCollectStatus = scPressure;					
 				} else if (sensorId == SensorDescGyroscope.SENSOR_ID) {					
 					doCollect = scGyroscope.isCollect();					
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorGyroscope, SensorManager.SENSOR_DELAY_NORMAL) : false;					
-					sensorCollectStatus = scGyroscope;
+					sensorCollectStatus = scGyroscope;					
 				} else if (sensorId == SensorDescHumidity.SENSOR_ID) {
 					scHumidity.setMeasureStart(startTime);
 					doCollect = scHumidity.isCollect();
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorHumidity, SensorManager.SENSOR_DELAY_NORMAL) : false;
-					sensorCollectStatus = scHumidity;
+					sensorCollectStatus = scHumidity;					
 				} else if (sensorId == SensorDescLight.SENSOR_ID) {
 					scLight.setMeasureStart(startTime);
 					doCollect = scLight.isCollect();
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorLight, SensorManager.SENSOR_DELAY_NORMAL) : false;
-					sensorCollectStatus = scLight;
+					sensorCollectStatus = scLight;					
 				} else if (sensorId == SensorDescMagnetic.SENSOR_ID) {
 					scMagnet.setMeasureStart(startTime);
-					doCollect = scMagnet.isCollect();
+					doCollect = scMagnet.isCollect();					
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorMagnet, SensorManager.SENSOR_DELAY_NORMAL) : false;
-					sensorCollectStatus = scMagnet;
+					sensorCollectStatus = scMagnet;										
 				} else if (sensorId == SensorDescProximity.SENSOR_ID) {
 					scProximity.setMeasureStart(startTime);
 					doCollect = scProximity.isCollect();
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorProximity, SensorManager.SENSOR_DELAY_NORMAL) : false;
-					sensorCollectStatus = scProximity;
+					sensorCollectStatus = scProximity;					
 				} else if (sensorId == SensorDescTemperature.SENSOR_ID) {
 					scTemperature.setMeasureStart(startTime);
-					doCollect = scTemperature.isCollect();
+					doCollect = scTemperature.isCollect();					
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorTemperature, SensorManager.SENSOR_DELAY_NORMAL) : false;
-					sensorCollectStatus = scTemperature;
+					sensorCollectStatus = scTemperature;					
 				} else if (sensorId == SensorDescBattery.SENSOR_ID) {
 					scBattery.setMeasureStart(startTime);
 					doCollect = scBattery.isCollect();

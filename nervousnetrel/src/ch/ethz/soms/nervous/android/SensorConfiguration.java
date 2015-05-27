@@ -26,8 +26,9 @@ public class SensorConfiguration {
 		boolean doMeasure = settings.getBoolean(Long.toHexString(sensorID) + "_doMeasure", true);
 		boolean doShare = settings.getBoolean(Long.toHexString(sensorID) + "_doShare", true);
 		
-		int measureInterval = (int)context.getSharedPreferences(NervousStatics.SENSOR_FREQ, 0)
-			.getFloat(Long.toHexString(sensorID) + "_freqValue", 30) * 1000;
+		int measureInterval = (int)context.getSharedPreferences(NervousStatics.SENSOR_FREQ, 0)				
+			.getInt(Long.toHexString(sensorID) + "_freqValue", 30) * 1000;
+		System.out.println(measureInterval);
 //		int measureInterval = settings.getInt(Long.toHexString(sensorID) + "_measureInterval", 30 * 1000);
 		
 		long measureDuration = settings.getLong(Long.toHexString(sensorID) + "_measureDuration", -1);

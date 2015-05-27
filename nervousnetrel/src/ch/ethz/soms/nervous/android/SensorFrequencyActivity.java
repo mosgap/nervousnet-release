@@ -37,8 +37,19 @@ public class SensorFrequencyActivity extends Activity {
 			"Noise", "Pressure", "Proximity", "Temperature" };
 	String[] arrFrequency = { "30 sec", "1 min", "2 min", "3 min", "5 min",
 			"10 min", "15 min", "20 min", "30 min", "45 min", "1 h", "2 h",
-			"10 h", "12 h", "1 d", "2 d", "5 d", "1 w", "2 w", "1 month",
-			"2 months", "3 months", "6 months", "1 year" };
+			"10 h", "12 h", "1 d", "2 d", "5 d", "1 w", "2 w", "1 m"};
+	
+	final int m = 60;
+	final int h = 60*m;
+	final int d = 24*h;
+	final int w = 7*d;
+	final int mo = 4*w;
+	
+	int[] arrSeconds = { 30, m, 2*m, 3*m, 5*m,
+			10*m, 15*m, 20*m, 30*m, 45*m, h, 2*h,
+			10*h, 12*h, d, 2*d, 5*d, w, 2*w, mo	
+	};
+	
 	long[] sensorIds = { SensorDescAccelerometer.SENSOR_ID,
 			SensorDescBattery.SENSOR_ID, SensorDescBLEBeacon.SENSOR_ID,
 			SensorDescConnectivity.SENSOR_ID, SensorDescGyroscope.SENSOR_ID,
@@ -121,6 +132,8 @@ public class SensorFrequencyActivity extends Activity {
 				public void onItemSelected(AdapterView<?> parent, View view,
 						int freqIndex, long id) {
 					Editor edit = settings.edit();
+					edit.putInt(Long.toHexString(sensorIds[position])
+							+ "_freqValue", arrSeconds[freqIndex]);
 					edit.putInt(Long.toHexString(sensorIds[position])
 							+ "_freqIndex", freqIndex);
 					edit.commit();

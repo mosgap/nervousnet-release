@@ -6,8 +6,8 @@
     <logWriteVerbosity>15</logWriteVerbosity>
     <serverPort>25600</serverPort>
     <serverThreads>2</serverThreads>
-    <sqlHostname>localhost</sqlHostname>
-    <sqlPassword>1234</sqlPassword>
+    <sqlHostname>inn.ac</sqlHostname>
+    <sqlPassword></sqlPassword>
     <sqlPort>3306</sqlPort>
     <sqlUsername>nervous</sqlUsername>
     <sqlDatabase>nervous</sqlDatabase>
