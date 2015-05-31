@@ -1,6 +1,7 @@
 package ch.ethz.soms.nervous.android;
 
 import ch.ethz.soms.nervous.utils.NervousStatics;
+import ch.ethz.soms.nervousnet.R;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;

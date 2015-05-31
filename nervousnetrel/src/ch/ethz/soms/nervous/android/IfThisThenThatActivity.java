@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import ch.ethz.soms.nervousnet.R;
 
 public class IfThisThenThatActivity extends Activity {
 

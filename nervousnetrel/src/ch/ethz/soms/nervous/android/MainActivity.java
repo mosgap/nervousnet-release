@@ -32,6 +32,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import ch.ethz.soms.nervous.android.sensors.SensorDescBLEBeacon;
 import ch.ethz.soms.nervous.utils.NervousStatics;
+import ch.ethz.soms.nervousnet.R;
 
 public class MainActivity extends Activity {
 

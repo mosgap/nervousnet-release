@@ -8,6 +8,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
+import ch.ethz.soms.nervousnet.R;
 
 public class SettingsActivity extends PreferenceActivity {
 

@@ -17,6 +17,7 @@ import ch.ethz.soms.nervous.android.sensors.SensorDescAccelerometerNew;
 import ch.ethz.soms.nervous.android.sensors.SensorDescGyroscopeNew;
 import ch.ethz.soms.nervous.android.sensors.SensorDescMagneticNew;
 import ch.ethz.soms.nervous.android.sensors.SensorDescSingleValue;
+import ch.ethz.soms.nervousnet.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;

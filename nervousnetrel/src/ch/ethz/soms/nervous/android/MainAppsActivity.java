@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import ch.ethz.soms.nervousnet.R;
 
 public class MainAppsActivity extends Activity {
 

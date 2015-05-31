@@ -13,6 +13,7 @@ import ch.ethz.soms.nervous.android.sensors.SensorDescPressure;
 import ch.ethz.soms.nervous.android.sensors.SensorDescProximity;
 import ch.ethz.soms.nervous.android.sensors.SensorDescTemperature;
 import ch.ethz.soms.nervous.utils.NervousStatics;
+import ch.ethz.soms.nervousnet.R;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
