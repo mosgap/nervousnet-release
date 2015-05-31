@@ -169,7 +169,7 @@ public class SensorService extends Service implements SensorEventListener, Noise
 				long startTime = System.currentTimeMillis();
 
 				if (sensorId == SensorDescAccelerometer.SENSOR_ID) {
-					scAccelerometer.setMeasureStart(startTime);
+					scAccelerometer.setMeasureStart(startTime);					
 					doCollect = scAccelerometer.isCollect();
 					doCollect = doCollect ? sensorManager.registerListener(sensorListenerClass, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL) : false;					
 					sensorCollectStatus = scAccelerometer;					
@@ -235,7 +235,7 @@ public class SensorService extends Service implements SensorEventListener, Noise
 						doCollect = sensorBLEBeacon.startScanning(Math.max(scBLEBeacon.getMeasureDuration(), 2000));
 					}
 					// TODO Fix for now, agressive BLE scanning
-					scBLEBeacon.setMeasureInterval(3000);
+//					scBLEBeacon.setMeasureInterval(3000);
 					sensorCollectStatus = scBLEBeacon;
 				} else if (sensorId == SensorDescNoise.SENSOR_ID) {
 					scNoise.setMeasureStart(startTime);
@@ -342,7 +342,7 @@ public class SensorService extends Service implements SensorEventListener, Noise
 			break;
 		}
 
-		sensorDescs.add(sensorDesc);
+		sensorDescs.add(sensorDesc);		
 		store(sensorDesc.getSensorId(), sensorDescs);
 	}
 
@@ -388,16 +388,17 @@ public class SensorService extends Service implements SensorEventListener, Noise
 		sensorCollected.remove(SensorDescBLEBeacon.class);
 	}
 
-	private synchronized void store(long sensorId, List<SensorDesc> sensorDescs) {
+	private synchronized void store(long sensorId, List<SensorDesc> sensorDescs) {		
 		storeMutex.lock();
 		SensorCollectStatus scs = sensorCollected.get(sensorId);
+			
 		if (sensorDescs != null && !sensorDescs.isEmpty()) {
-			if (scs != null) {
+			if (scs != null) {			
 				if (!scs.isDone(System.currentTimeMillis())) {
-					// Collected new data of this type, count it
+					// Collected new data of this type, count it					
 					scs.increaseCollectAmount();
 					// Enough collected, remove from list
-					if (scs.isDone(System.currentTimeMillis())) {
+					if (scs.isDone(System.currentTimeMillis())) {						
 						sensorCollected.remove(scs.getSensorId());
 						// Remove from listener list
 						unregisterSensor(scs.getSensorId());
@@ -405,18 +406,20 @@ public class SensorService extends Service implements SensorEventListener, Noise
 					for (SensorDesc sensorDesc : sensorDescs) {
 						new StoreTask(getApplicationContext()).execute(sensorDesc);
 					}
+				} else {
+					unregisterSensor(scs.getSensorId());
 				}
 			}
 		}
 		storeMutex.unlock();
 	}
 
-	private void unregisterSensor(long sensorId) {
+	private void unregisterSensor(long sensorId) {		
 		if (sensorId == SensorDescAccelerometer.SENSOR_ID) {
 			sensorManager.unregisterListener(this, sensorAccelerometer);
 		} else if (sensorId == SensorDescPressure.SENSOR_ID) {
 			sensorManager.unregisterListener(this, sensorPressure);
-		} else if (sensorId == SensorDescGyroscope.SENSOR_ID) {
+		} else if (sensorId == SensorDescGyroscope.SENSOR_ID) {			
 			sensorManager.unregisterListener(this, sensorGyroscope);
 		} else if (sensorId == SensorDescHumidity.SENSOR_ID) {
 			sensorManager.unregisterListener(this, sensorHumidity);
