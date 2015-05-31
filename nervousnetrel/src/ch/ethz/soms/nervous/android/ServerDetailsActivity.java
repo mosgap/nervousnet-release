@@ -18,10 +18,17 @@ public class ServerDetailsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_server_details);
 		
-		uploadPreferences = getSharedPreferences(NervousStatics.UPLOAD_PREFS, 0);		
+		uploadPreferences = getSharedPreferences(NervousStatics.UPLOAD_PREFS, 0);	
+		String ip = uploadPreferences.getString("serverIP", null);
+		int port = uploadPreferences.getInt("serverPort", -1);
 		
 		edt_ServerIP = (EditText) findViewById(R.id.edt_ServerIP);
-		edt_ServerPort = (EditText) findViewById(R.id.edt_ServerPortNo);				
+		edt_ServerPort = (EditText) findViewById(R.id.edt_ServerPortNo);
+		
+		if (ip != null && port != -1) {
+			edt_ServerIP.setText(ip);
+			edt_ServerPort.setText(port + "");
+		}
 	}
 
 	@Override
@@ -31,13 +38,14 @@ public class ServerDetailsActivity extends Activity {
 		Editor editor = uploadPreferences.edit();
 		editor.putString("serverIP", edt_ServerIP.getText().toString());
 				
-		int port = -1;	
 		try {
-			port = Integer.parseInt(edt_ServerPort.getText().toString());
+			int port = Integer.parseInt(edt_ServerPort.getText().toString());
+			editor.putInt("serverPort", port);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		editor.putInt("serverPort", port);
+			super.onPause();
+			return;
+		}		
 		
 		if (editor.commit()) {
 			if (SensorService.isServiceRunning(this)) {
