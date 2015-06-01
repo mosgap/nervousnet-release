@@ -439,12 +439,12 @@ public class SensorsStatisticsActivity extends Activity {
         	}
         } else if (selected_sensor.equalsIgnoreCase("Gyroscope"))
         {
-        	javascript_variables =  "var unit_of_meas = " + "'��';" +
-                    "var first_curve_name = " + "'�� around X axis';" +
-                    "var second_curve_name = " +"'�� around Y axis';" + 
-                    "var third_curve_name = " + "'�� around Z axis';" +
+        	javascript_variables =  "var unit_of_meas = " + "'rad/s';" +
+                    "var first_curve_name = " + "'rotation around X axis';" +
+                    "var second_curve_name = " +"'rotation around Y axis';" + 
+                    "var third_curve_name = " + "'rotation around Z axis';" +
                     "var x_axis_title = " + "'Date';" +
-                    "var y_axis_title = " + "'Angle (��)';" +
+                    "var y_axis_title = " + "'(rad/s)';" +
                     "var plot_title = " + "'Gyroscope data';" +
                     "var plot_subtitle = " + "'angles around axes x,y,z';";
         	
@@ -605,12 +605,12 @@ public class SensorsStatisticsActivity extends Activity {
             }
         } else if (selected_sensor.equalsIgnoreCase("Magnetic"))
         {
-        	javascript_variables = "var unit_of_meas = " + "'��T';" +
-                    "var first_curve_name = " + "'��T along X axis';" +
-                    "var second_curve_name = " +"'��T along Y axis';" + 
-                    "var third_curve_name = " + "'��T along Z axis';" +
+        	javascript_variables = "var unit_of_meas = " + "'Microtesla';" +
+                    "var first_curve_name = " + "'Microtesla along X axis';" +
+                    "var second_curve_name = " +"'Microtesla along Y axis';" + 
+                    "var third_curve_name = " + "'Microtesla along Z axis';" +
                     "var x_axis_title = " + "'Date';" +
-                    "var y_axis_title = " + "'Field strength (��T)';" +
+                    "var y_axis_title = " + "'Field strength (Microtesla)';" +
                     "var plot_title = " + "'Geomagnetic field data';" +
                     "var plot_subtitle = " + "'strength along axes x,y,z';";
         	
@@ -725,9 +725,9 @@ public class SensorsStatisticsActivity extends Activity {
         } else if (selected_sensor.equalsIgnoreCase("Temperature"))
         {
         	javascript_variables =  "var curve_name = " + "'Temperature';" +
-                    "var unit_of_meas = " + "'��';" +
+                    "var unit_of_meas = " + "'Deg Celsius';" +
                     "var x_axis_title = " + "'Date';" +
-                    "var y_axis_title = " + "'Temperature(��)';" +
+                    "var y_axis_title = " + "'Temperature(Deg Celsius)';" +
                     "var plot_title = " + "'Temperature data';" +
                     "var plot_subtitle = " + "'';";
         	
