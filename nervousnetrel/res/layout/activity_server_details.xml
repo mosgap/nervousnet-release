@@ -40,7 +40,7 @@
         android:ems="10"
         android:gravity="center"
         android:padding="10dp"
-        android:text="" >
+        android:text="70.32.68.238" >
 
         <requestFocus />
     </EditText>
@@ -56,6 +56,6 @@
         android:ems="10"
         android:gravity="center"
         android:padding="10dp"
-        android:text="" />
+        android:text="2222" />
 
 </RelativeLayout>
