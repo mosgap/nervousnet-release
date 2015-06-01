@@ -174,6 +174,7 @@ public class MainActivity extends Activity {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.cancel();
 							startStopSensorService(true);
+							refreshOnOffButtons();
 						}
 					});
 			builder.setNegativeButton(getString(R.string.no),
