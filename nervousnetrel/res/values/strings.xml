@@ -17,7 +17,7 @@
     <string name="contribute">Contribute to nervousnet?</string>
     <string name="contribute_long">Enable sensor logging and uploading to help nervousnet?</string>
     <string name="dont_show_again">Don\'t show this again</string>
-    <string name="title_activity_sensor_logging_toggle">SensorLoggingToggleActivity</string>
+    <string name="title_activity_sensor_logging_toggle">Privacy settings</string>
     <string name="title_activity_sensors_statistics">Sensor statistics</string>
     <string name="title_activity_charts_webview">Statistics</string>
 
@@ -36,8 +36,8 @@
         <item>Temperature</item>
     </string-array>
 
-    <string name="title_activity_server_details">ServerDetailsActivity</string>
-    <string name="title_activity_sensor_frequency">SensorFrequencyActivity</string>
-    <string name="title_activity_main_apps">MainAppsActivity</string>
+    <string name="title_activity_server_details">Proxy details</string>
+    <string name="title_activity_sensor_frequency">Sensor upload frequencies</string>
+    <string name="title_activity_main_apps">Other Nervousnet apps</string>
 
 </resources>

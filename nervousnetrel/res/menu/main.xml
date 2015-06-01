@@ -1,19 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
+    <!-- <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_settings"/> -->
     <item
         android:id="@+id/menu_main"
         android:title="Main Apps">
     </item>
     
-    <item
+    <!-- <item
         android:id="@+id/menu_SensorsStatistics"
         android:title="Sensor statistics">
-    </item>
+    </item> -->
     
     <!-- <item
         android:id="@+id/menu_visualizer"
@@ -37,7 +37,7 @@
         android:title="Sensor Logging Toggle">
     </item> -->
 
-    <item
+   <!--  <item
         android:id="@+id/menu_TestQuery"
         android:title="Test Query">
         <menu>
@@ -135,6 +135,6 @@
                 </menu>
             </item>
         </menu>
-    </item>
+    </item> -->
 
 </menu>

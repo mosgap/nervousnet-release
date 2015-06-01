@@ -53,7 +53,7 @@
         <activity
             android:name="ch.ethz.soms.nervous.android.SensorLoggingToggleActivity"
             android:label="@string/title_activity_sensor_logging_toggle"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="ch.ethz.soms.nervous.android.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.ethz.soms.nervous.android.MainActivity" />
@@ -61,7 +61,7 @@
         <activity
             android:name="ch.ethz.soms.nervous.android.SensorsStatisticsActivity"
             android:label="@string/title_activity_sensors_statistics"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="ch.ethz.soms.nervous.android.MainActivity" >
         </activity>
         <activity
             android:name="ch.ethz.soms.nervous.android.ChartsWebViewActivity"
@@ -70,12 +70,12 @@
         <activity
             android:name="ch.ethz.soms.nervous.android.ServerDetailsActivity"
             android:label="@string/title_activity_server_details"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="ch.ethz.soms.nervous.android.MainActivity" >
         </activity>
         <activity
             android:name="ch.ethz.soms.nervous.android.SensorFrequencyActivity"
             android:label="@string/title_activity_sensor_frequency"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="ch.ethz.soms.nervous.android.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.ethz.soms.nervous.android.MainActivity" />
@@ -91,7 +91,7 @@
         <activity
             android:name="ch.ethz.soms.nervous.android.MainAppsActivity"
             android:label="@string/title_activity_main_apps"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="ch.ethz.soms.nervous.android.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.ethz.soms.nervous.android.MainActivity" />

@@ -1,6 +1,7 @@
 package ch.ethz.soms.nervous.android;
 
 import java.util.Random;
+import ch.ethz.soms.nervousnet.*;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,7 +33,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import ch.ethz.soms.nervous.android.sensors.SensorDescBLEBeacon;
 import ch.ethz.soms.nervous.utils.NervousStatics;
-import ch.ethz.soms.nervousnet.R;
 
 public class MainActivity extends Activity {
 
@@ -307,57 +307,57 @@ public class MainActivity extends Activity {
 
 		Intent intent;
 		switch (item.getItemId()) {
-		case R.id.menu_TestQuery_Battery_MinBattery:
-			tq.minBattery();
-			break;
-		case R.id.menu_TestQuery_Battery_Bottom10:
-			tq.bottom10Battery();
-			break;
-		case R.id.menu_TestQuery_Battery_Top10:
-			tq.top10Battery();
-			break;
-		case R.id.menu_TestQuery_Battery_MaxBattery:
-			tq.maxBattery();
-			break;
-		case R.id.menu_TestQuery_Light_MaxLight:
-			tq.maxLight();
-			break;
-		case R.id.menu_TestQuery_Light_MinLight:
-			tq.minLight();
-			break;
-		case R.id.menu_TestQuery_Light_Top10Light:
-			tq.top10Light();
-			break;
-		case R.id.menu_TestQuery_Light_Bottom10Light:
-			tq.bottom10Light();
-			break;
-		case R.id.menu_TestQuery_Accelerometer_MaxAccAverage:
-			tq.maxAverageAccelerometer();
-			break;
-		case R.id.menu_TestQuery_Accelerometer_MinAccAverage:
-			tq.minAverageAccelerometer();
-			break;
-		case R.id.menu_TestQuery_Proximity_MaxProx:
-			tq.maxProximity();
-			break;
-		case R.id.menu_TestQuery_Proximity_MinProx:
-			tq.minProximity();
-			break;
-		case R.id.menu_TestQuery_Proximity_Top10Prox:
-			tq.top10Proximity();
-			break;
-		case R.id.menu_TestQuery_Proximity_Bottom10Prox:
-			tq.bottom10Proximity();
-			break;
-		case R.id.menu_TestQuery_Light_Prox_Kmean:
-			// TODO @Priya this method does not exist
-			// tq.lightProxKMean();
-			break;
-		case R.id.menu_SensorsStatistics:
-			intent = new Intent(this, SensorsStatisticsActivity.class);
-			intent.putExtra("serviceSwitchIsChecked", serviceRunning);
-			startActivity(intent);
-			break;
+//		case R.id.menu_TestQuery_Battery_MinBattery:
+//			tq.minBattery();
+//			break;
+//		case R.id.menu_TestQuery_Battery_Bottom10:
+//			tq.bottom10Battery();
+//			break;
+//		case R.id.menu_TestQuery_Battery_Top10:
+//			tq.top10Battery();
+//			break;
+//		case R.id.menu_TestQuery_Battery_MaxBattery:
+//			tq.maxBattery();
+//			break;
+//		case R.id.menu_TestQuery_Light_MaxLight:
+//			tq.maxLight();
+//			break;
+//		case R.id.menu_TestQuery_Light_MinLight:
+//			tq.minLight();
+//			break;
+//		case R.id.menu_TestQuery_Light_Top10Light:
+//			tq.top10Light();
+//			break;
+//		case R.id.menu_TestQuery_Light_Bottom10Light:
+//			tq.bottom10Light();
+//			break;
+//		case R.id.menu_TestQuery_Accelerometer_MaxAccAverage:
+//			tq.maxAverageAccelerometer();
+//			break;
+//		case R.id.menu_TestQuery_Accelerometer_MinAccAverage:
+//			tq.minAverageAccelerometer();
+//			break;
+//		case R.id.menu_TestQuery_Proximity_MaxProx:
+//			tq.maxProximity();
+//			break;
+//		case R.id.menu_TestQuery_Proximity_MinProx:
+//			tq.minProximity();
+//			break;
+//		case R.id.menu_TestQuery_Proximity_Top10Prox:
+//			tq.top10Proximity();
+//			break;
+//		case R.id.menu_TestQuery_Proximity_Bottom10Prox:
+//			tq.bottom10Proximity();
+//			break;
+//		case R.id.menu_TestQuery_Light_Prox_Kmean:
+//			// TODO @Priya this method does not exist
+//			// tq.lightProxKMean();
+//			break;
+//		case R.id.menu_SensorsStatistics:
+//			intent = new Intent(this, SensorsStatisticsActivity.class);
+//			intent.putExtra("serviceSwitchIsChecked", serviceRunning);
+//			startActivity(intent);
+//			break;
 		default:
 			break;
 

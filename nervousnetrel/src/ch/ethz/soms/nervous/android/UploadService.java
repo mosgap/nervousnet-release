@@ -65,7 +65,7 @@ public class UploadService extends Service {
 		final int period = uploadPreferences.getInt("UploadFrequency", 10 * 1000);
 
 		additionalIP = uploadPreferences.getString("serverIP", null);
-		additionalPort = uploadPreferences.getInt("serverPort", -1);
+		additionalPort = uploadPreferences.getInt("serverPort", -1);		
 		
 		final Handler handler = new Handler(hthread.getLooper());
 
@@ -80,23 +80,23 @@ public class UploadService extends Service {
 				// Conditions subject to change to fit app purpose and user settings
 				if (isConnected) {
 					
+					Socket nervousServer = null, additionalServer = null;
 					try {
-						Socket nervousServer = new Socket(nervousIP, nervousPort);
-						UploadTask task = new UploadTask(nervousServer);
-						task.execute();
+						nervousServer = new Socket(nervousIP, nervousPort);								
+					} catch (IOException e) {
+						e.printStackTrace();						
+					}
+					try {
+						if (additionalIP != null && additionalPort != -1) {
+							additionalServer = new Socket(additionalIP, additionalPort);
+						}
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					System.out.println(additionalIP + " " + additionalPort);
-					if (additionalIP != null && additionalPort != -1) {
-						try {						
-							Socket additionalServer = new Socket(additionalIP, additionalPort);
-							UploadTask task = new UploadTask(additionalServer);
-							task.execute();						
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
+					
+					
+					UploadTask task = new UploadTask(nervousServer, additionalServer);
+					task.execute();								
 				}
 
 				handler.postDelayed(this, period);
@@ -137,8 +137,10 @@ public class UploadService extends Service {
 	public class UploadTask extends AsyncTask<SensorDesc, Void, Void> {
 
 		Socket socket;
-		public UploadTask(Socket socket) {
+		Socket optSocket;
+		public UploadTask(Socket socket, Socket optSocket) {
 			this.socket = socket;
+			this.optSocket = optSocket;
 		}
 		
 		@Override
@@ -147,6 +149,7 @@ public class UploadService extends Service {
 			try {
 				NervousVM nvm = NervousVM.getInstance(getApplicationContext().getFilesDir());				
 				OutputStream os = socket.getOutputStream();
+				OutputStream os2 = optSocket != null ? optSocket.getOutputStream() : null;
 				for (long i = 0x0; i < 0xC; i++) {
 					boolean doShare = settings.getBoolean(Long.toHexString(i) + "_doShare", true);
 					if (doShare) {
@@ -161,6 +164,7 @@ public class UploadService extends Service {
 							sub.addAllSensorValues(sensorDataList);
 							sub.setUploadTime(System.currentTimeMillis());
 							sub.build().writeDelimitedTo(os);
+							sub.build().writeDelimitedTo(os2);
 							nvm.setLastUploadedTimestamp(i, sensorDataList.get(sensorDataList.size() - 1).getRecordTime());
 						}
 					}
