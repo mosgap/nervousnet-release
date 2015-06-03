@@ -36,8 +36,8 @@
         <item>Temperature</item>
     </string-array>
 
-    <string name="title_activity_server_details">Proxy details</string>
-    <string name="title_activity_sensor_frequency">Sensor upload frequencies</string>
-    <string name="title_activity_main_apps">Other Nervousnet apps</string>
+    <string name="title_activity_server_details">Proxy settings</string>
+    <string name="title_activity_sensor_frequency">Sensor logging interval</string>
+    <string name="title_activity_main_apps">Nervousnet Virtual Sensors</string>
 
 </resources>
