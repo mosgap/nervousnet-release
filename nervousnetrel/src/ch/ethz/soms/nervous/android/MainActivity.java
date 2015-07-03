@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 	private static final int vibDuration = 50;
 	int selectedActivity;
 	private ImageButton btnMain, btnPrivacy, btnDataVis, btnColFreq, btnOn,
-			btnOff, btnServerInfo;
+			btnOff, btnServerInfo, btnVirtualSensors;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,8 @@ public class MainActivity extends Activity {
 		btnOn = (ImageButton) findViewById(R.id.btn_on);
 		btnOff = (ImageButton) findViewById(R.id.btn_off);
 		btnServerInfo = (ImageButton) findViewById(R.id.btn_serverInfo);
+		btnVirtualSensors = (ImageButton) findViewById(R.id.btn_virtual_sensorss);
+		
 
 		btnMain.setOnClickListener(new OnClickListener() {
 
@@ -130,6 +132,17 @@ public class MainActivity extends Activity {
 				animateAllButtonsOut(btnServerInfo);
 			}
 		});
+		
+		
+		btnVirtualSensors.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				vibrator.vibrate(vibDuration);
+				selectedActivity = 5;
+				animateAllButtonsOut(btnVirtualSensors);
+			}
+		});
+
 
 		updateServiceInfo();
 		if (!serviceRunning) {
@@ -546,6 +559,11 @@ public class MainActivity extends Activity {
 				case 4:
 					intent = new Intent(MainActivity.this,
 							ServerDetailsActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+					break;
+				case 5:
+					intent = new Intent(MainActivity.this,
+							VirtualSensorSettingsActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 					break;
 				default:

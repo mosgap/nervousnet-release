@@ -29,7 +29,6 @@ public class Interval implements Comparable<Interval>, Serializable {
 		this.upper = upper;
 	}
 
-	@Override
 	public int compareTo(Interval another) {
 		if ((another.lower >= this.lower && another.upper <= this.upper) || (another.lower <= this.lower && another.upper >= this.upper)) {
 			return 0;

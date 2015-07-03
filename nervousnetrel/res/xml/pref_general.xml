@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <CheckBoxPreference
+            android:key="virtual_sensors_main_checkbox"
+            android:title="@string/pref_title_virtual_sensor_notifications"
+            android:summary="@string/pref_description_virtual_sensor_notification"
+            android:defaultValue="true" />
+
+    <CheckBoxPreference
+            android:dependency="virtual_sensors_main_checkbox"
+            android:key="virtual_sensors_sound_checkbox"
+            android:title="@string/pref_title_sound"
+            android:defaultValue="false" />
+
+    <CheckBoxPreference
+            android:dependency="virtual_sensors_main_checkbox"
+            android:key="virtual_sensors_vibrate_checkbox"
+            android:title="@string/pref_title_vibrate"
+            android:defaultValue="false" />
+
+</PreferenceScreen>

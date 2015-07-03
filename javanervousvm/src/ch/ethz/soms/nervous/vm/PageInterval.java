@@ -33,7 +33,6 @@ public class PageInterval implements Comparable<PageInterval>, Serializable {
 		return interval.toString() + "->(" + Long.toHexString(pageNumber) + ")";
 	}
 
-	@Override
 	public int compareTo(PageInterval o) {
 		if (this.pageNumber == -1) {
 			return this.interval.compareTo(o.interval);

@@ -84,6 +84,7 @@ public class DrawView extends View {
 		canvas.drawCircle(centerX, centerY, Math.min(maxW, maxH) * 0.25f,
 				paintCircles);
 
+		
 		float r = Math.min(maxW, maxH) * 0.14f;
 		for (float i = 0.2f; i < 1.5; i += 0.2) {
 			drawCircleNode(canvas, centerX, centerY, r, Math.PI * i);
@@ -172,7 +173,6 @@ public class DrawView extends View {
 	}
 
 	private void toastToScreen(String msg, boolean lengthLong) {
-
 		int toastLength = lengthLong ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT;
 		Toast.makeText(context, msg, toastLength).show();
 	}
