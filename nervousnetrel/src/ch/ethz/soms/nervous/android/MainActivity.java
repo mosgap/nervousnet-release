@@ -440,6 +440,18 @@ public class MainActivity extends Activity {
 
 		resetButtonAnimateIn(btnServerInfo, newW, newH, newX, newY);
 
+		// Virtual Sensors Option Button
+		scale = 0.13f;
+		w = maxX * scale;
+		h = maxY * scale;
+		newW = (int) Math.min(w, h);
+		newH = (int) Math.min(w, h);
+
+		newX = (maxX * 0.5f) - (newW / 2);
+		newY = (maxY * 0.3f) - (newH / 2);
+
+		resetButtonAnimateIn(btnVirtualSensors, newW, newH, newX, newY);
+		
 		// On-Off button
 		scale = 0.13f;
 		w = maxX * scale;
@@ -603,6 +615,9 @@ public class MainActivity extends Activity {
 		}
 		if (!selectedButton.equals(btnServerInfo)) {
 			animateButtonOut(btnServerInfo);
+		}
+		if (!selectedButton.equals(btnVirtualSensors)) {
+			animateButtonOut(btnVirtualSensors);
 		}
 
 		// only animate on/off button out if visible
