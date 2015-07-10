@@ -215,30 +215,38 @@ public abstract G createSensorDescVectorValue(SensorData sensorData);
 	
 	public ArrayList<Float> sd()
 	{
-		//
+
 		ArrayList<Float> variance = new ArrayList<Float>(); //store variance
-		//d = 0 returns arraylist of variance for each reading
-		//d = 1 returns arraylist of variance for each variable of each reading
+	
 		
-			try{ArrayList<Float> average = new ArrayList<Float>();
+			try{
+				ArrayList<Float> average = new ArrayList<Float>();
+				// dummy values
+			average.add(0, (float) 0);
+			average.add(1, (float) 0);
+			average.add(2, (float) 0);
+			variance.add(0, (float) 0);
+			variance.add(1, (float) 0);
+			variance.add(2, (float) 0);
+			
 			for (SensorData sensorData : list) {
 				G sensDesc = createSensorDescVectorValue(sensorData); // loop over the sensor data,get the object
 				ArrayList<Float> temp = new ArrayList<Float>();       //temporary data
 				temp = sensDesc.getValue();
-				//get sum
-				for(int i = 0; i < temp.size(); i++)                   //for each x,z & z
+				for(int i = 0; i < 3; i++)                   //for each x,z & z
 				{
 					 float temptemp = average.get(i) + temp.get(i);   //add current data to the existing one and replace
-					 average.set(i,temptemp); //individual averages
+					 average.set(i,temptemp); //sum for each x,y and z
 				}
+				//now 3 average elements
 				
 			}
-			// get average
-			for(int i = 0 ; i < average.size(); i++ )
+
+			for(int i = 0 ; i < 3; i++ )//divide by size
 			{
 				float temptemp = average.get(i);
-				temptemp = temptemp / list.size();
-				average.set(i,temptemp);
+				temptemp = temptemp/list.size();
+				average.set(i,temptemp);//average
 			}
 			
 			//average has average of x,y and z
@@ -247,62 +255,34 @@ public abstract G createSensorDescVectorValue(SensorData sensorData);
 				G sensDesc = createSensorDescVectorValue(sensorData); // loop over the sensor data,get the object
 				ArrayList<Float> temp = new ArrayList<Float>();       //temporary data
 				temp = sensDesc.getValue();
-				
-				for(int i = 0; i < temp.size(); i++)                   //for each x,z & z
-				{
-					float temptemp = variance.get(i);                 // initially variance 0?
-					temptemp = temptemp + (average.get(i) - temp.get(i)) * (average.get(i) - temp.get(i));
-					variance.add(i,temptemp);
-				}
-				
-				for(int i = 0; i < temp.size(); i++)                   //for each x,z & z
+				for(int i = 0; i < 3; i++)                   //for each x,z & z
 				{
 					float temptemp = variance.get(i);
-					temptemp = temptemp / temp.size(); //   list.size() ??
-					variance.add(i,temptemp);          // variance of each x,y,z?
+					temptemp = temptemp + (average.get(i) - temp.get(i)) * (average.get(i) - temp.get(i));
+					variance.set(i,temptemp);
+				}
+				for(int i = 0; i < 3; i++)                   //for each x,z & z
+				{
+					float temptemp = variance.get(i);
+					temptemp = temptemp / temp.size();
+					variance.set(i,temptemp);
+				}
+				for(int i = 0; i < 3; i++)                   //for each x,z & z
+				{
+					float temptemp = variance.get(i);
+					temptemp = (float) Math.sqrt(temptemp);  
+					variance.set(i,temptemp);
 				}
 				
 				
 			}
-			
-			/*for (SensorData sensorData : list) {
-				
-				G sensDesc = createSensorDescVectorValue(sensorData); // loop over the sensor data,get the object
-				ArrayList<Float> temp = new ArrayList<Float>();       //temporary data
-				temp = sensDesc.getValue();
-				float mean = 0;
-				for(int i = 0; i < temp.size(); i++)                   //for each x,y & z
-				{
-					mean = mean + temp.get(i);
-				}
-				mean = mean / temp.size(); // average
-				float v = 0;
-				for(int i = 0; i < temp.size(); i++)                   //for each x,y & z
-				{
-					v = v + (mean - temp.get(i))*(mean - temp.get(i));
-				}
-				
-				v = v /temp.size();
-				variance.add(v);
-				
-				//index of sensdesc
-				
-				
-			}*/
 
-		
-		
-		for(int i = 0;i < variance.size(); i++)
-		{
-			float temp = variance.get(i);
-			temp = (float) Math.sqrt(temp);
-			variance.add(i,temp);
-		}
 			}
 			catch(Exception e1){
 				System.out.println(e1);
 			}
-		return variance;  //not variance SD!!
+		
+		return variance;
 	}
 	
 	public G getMaxValue() { //add all three values and find the maximum
