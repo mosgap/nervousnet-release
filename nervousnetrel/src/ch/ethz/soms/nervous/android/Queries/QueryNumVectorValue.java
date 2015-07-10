@@ -149,25 +149,34 @@ public abstract G createSensorDescVectorValue(SensorData sensorData);
 	
 	public ArrayList<Float> var() 
 	{
-		//
-		ArrayList<Float> variance = new ArrayList<Float>(); //store variance
-		//d = 0 returns arraylist of variance for each reading
-		//d = 1 returns arraylist of variance for each variable of each reading(each x,y,z)
 		
-			try{ArrayList<Float> average = new ArrayList<Float>();
+		ArrayList<Float> variance = new ArrayList<Float>(); //store variance
+	
+		
+			try{
+				ArrayList<Float> average = new ArrayList<Float>();
+				// dummy values
+			average.add(0, (float) 0);
+			average.add(1, (float) 0);
+			average.add(2, (float) 0);
+			variance.add(0, (float) 0);
+			variance.add(1, (float) 0);
+			variance.add(2, (float) 0);
+			
 			for (SensorData sensorData : list) {
 				G sensDesc = createSensorDescVectorValue(sensorData); // loop over the sensor data,get the object
 				ArrayList<Float> temp = new ArrayList<Float>();       //temporary data
 				temp = sensDesc.getValue();
-				for(int i = 0; i < temp.size(); i++)                   //for each x,z & z
+				for(int i = 0; i < 3; i++)                   //for each x,z & z
 				{
 					 float temptemp = average.get(i) + temp.get(i);   //add current data to the existing one and replace
-					 average.set(i,temptemp); //sum
+					 average.set(i,temptemp); //sum for each x,y and z
 				}
+				//now 3 average elements
 				
 			}
 
-			for(int i = 0 ; i < average.size(); i++ )//divide by size
+			for(int i = 0 ; i < 3; i++ )//divide by size
 			{
 				float temptemp = average.get(i);
 				temptemp = temptemp/list.size();
@@ -180,51 +189,21 @@ public abstract G createSensorDescVectorValue(SensorData sensorData);
 				G sensDesc = createSensorDescVectorValue(sensorData); // loop over the sensor data,get the object
 				ArrayList<Float> temp = new ArrayList<Float>();       //temporary data
 				temp = sensDesc.getValue();
-				for(int i = 0; i < temp.size(); i++)                   //for each x,z & z
+				for(int i = 0; i < 3; i++)                   //for each x,z & z
 				{
 					float temptemp = variance.get(i);
 					temptemp = temptemp + (average.get(i) - temp.get(i)) * (average.get(i) - temp.get(i));
-					variance.add(i,temptemp);
+					variance.set(i,temptemp);
 				}
-				for(int i = 0; i < temp.size(); i++)                   //for each x,z & z
+				for(int i = 0; i < 3; i++)                   //for each x,z & z
 				{
 					float temptemp = variance.get(i);
 					temptemp = temptemp / temp.size();
-					variance.add(i,temptemp);
+					variance.set(i,temptemp);
 				}
 				
 				
 			}
-			
-			
-			
-		
-		// var between each reading
-		/*
-		 * for (SensorData sensorData : list) {
-				
-				G sensDesc = createSensorDescVectorValue(sensorData); // loop over the sensor data,get the object
-				ArrayList<Float> temp = new ArrayList<Float>();       //temporary data
-				temp = sensDesc.getValue();
-				float mean = 0;
-				for(int i = 0; i < temp.size(); i++)                   //for each x,y & z
-				{
-					mean = mean + temp.get(i);
-				}
-				mean = mean / temp.size();
-				float v = 0;
-				for(int i = 0; i < temp.size(); i++)                   //for each x,y & z
-				{
-					v = v + (mean - temp.get(i))*(mean - temp.get(i));
-				}
-				
-				v = v /temp.size();
-				variance.add(v);
-				
-				//index of sensdesc
-				
-				
-			}*/
 
 			}
 			catch(Exception e1){
