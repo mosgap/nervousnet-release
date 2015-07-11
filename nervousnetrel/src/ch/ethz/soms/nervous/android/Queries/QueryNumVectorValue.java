@@ -39,48 +39,7 @@ public abstract G createSensorDescVectorValue(SensorData sensorData);
 																							//specified.
 	{
 		ArrayList<G> answer = new ArrayList<G>();
-		/*if(d == 0){ //take x+y+z
-			
-		float start = s.get(0);
-		 float end = e.get(0);
 		
-		//get the particular query and send the object
-		//after that loop through all the elements and check if value within range
-		//output the descriptor in an ArrayList
-		
-		for(int i=0;i<desc_list.size();i++) //loop through the data
-		{
-			G sensDesc = desc_list.get(i);
-			ArrayList<Float> temp = new ArrayList<Float>();
-			temp = sensDesc.getValue();
-			float total_sub = 0;
-			
-			for(int j = 0 ; j < temp.size(); j++)  //all values of all dimensions lesser and greater than start and end
-			{
-				total_sub = total_sub + temp.get(i); //add x,y,z
-			}
-			
-			if(total_sub >= start && total_sub <= end) //all values in range
-			{
-				answer.add(sensDesc);
-			}
-			else
-			{
-				continue;
-			}
-		}
-		
-		
-		
-		}
-		else
-		if(d == 1)
-		{*/
-			//start and end values for each x,y,z
-			
-			//get the particular query and send the object
-			//after that loop through all the elements and check if value within range
-			//output the descriptor in an ArrayList
 			
 			try{for(int i=0; i < desc_list.size(); i++) //loop through the data
 			{
@@ -128,7 +87,7 @@ public abstract G createSensorDescVectorValue(SensorData sensorData);
 			{
 				float temptemp = answer.get(i);
 				temptemp = (float) (temptemp + Math.pow((temp.get(i)-comp.get(i)), 2));
-				answer.add(i, temptemp);
+				answer.set(i, temptemp);
 			}
 			
 		}
@@ -137,7 +96,7 @@ public abstract G createSensorDescVectorValue(SensorData sensorData);
 			float temptemp = answer.get(i);
 			temptemp = temptemp/list.size();
 			temptemp = (float) Math.sqrt(temptemp);
-			answer.add(i,temptemp);
+			answer.set(i,temptemp);
 		}
 		}
 		catch(Exception e1){
