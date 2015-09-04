@@ -601,4 +601,8 @@ public class MainActivity extends Activity {
 		int toastLength = lengthLong ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT;
 		Toast.makeText(getApplicationContext(), msg, toastLength).show();
 	}
+	
+	public void onBackPressed() {
+		finish();	
+	}
 }
