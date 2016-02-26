@@ -1,0 +1,173 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From javanervousvm:
+* .gitignore
+* lib\
+* lib\protobuf-java-2.5.0-javadoc.jar
+* lib\protobuf-java-2.5.0.jar
+From nervousnetrel:
+* LICENSE
+* README.md
+* doc\
+* doc\allclasses-frame.html
+* doc\allclasses-noframe.html
+* doc\ch\
+* doc\ch\ethz\
+* doc\ch\ethz\soms\
+* doc\ch\ethz\soms\nervous\
+* doc\ch\ethz\soms\nervous\android\
+* doc\ch\ethz\soms\nervous\android\Queries\
+* doc\ch\ethz\soms\nervous\android\Queries\Query.html
+* doc\ch\ethz\soms\nervous\android\Queries\QueryNum.html
+* doc\ch\ethz\soms\nervous\android\Queries\QueryNumSingleValue.LargestFirstComparator.html
+* doc\ch\ethz\soms\nervous\android\Queries\QueryNumSingleValue.SmallestFirstComparator.html
+* doc\ch\ethz\soms\nervous\android\Queries\QueryNumSingleValue.html
+* doc\ch\ethz\soms\nervous\android\Queries\QueryNumVectorValue.LargestFirstComparator.html
+* doc\ch\ethz\soms\nervous\android\Queries\QueryNumVectorValue.SmallestFirstComparator.html
+* doc\ch\ethz\soms\nervous\android\Queries\QueryNumVectorValue.html
+* doc\ch\ethz\soms\nervous\android\Queries\QueryText.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\Query.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\QueryNum.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\QueryNumSingleValue.LargestFirstComparator.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\QueryNumSingleValue.SmallestFirstComparator.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\QueryNumSingleValue.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\QueryNumVectorValue.LargestFirstComparator.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\QueryNumVectorValue.SmallestFirstComparator.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\QueryNumVectorValue.html
+* doc\ch\ethz\soms\nervous\android\Queries\class-use\QueryText.html
+* doc\ch\ethz\soms\nervous\android\Queries\package-frame.html
+* doc\ch\ethz\soms\nervous\android\Queries\package-summary.html
+* doc\ch\ethz\soms\nervous\android\Queries\package-tree.html
+* doc\ch\ethz\soms\nervous\android\Queries\package-use.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesAccelerometer.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesBattery.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesConnectivity.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesGyroscope.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesHumidity.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesLight.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesMagnetic.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesNoise.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesPressure.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesProximity.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\SensorQueriesTemperature.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesAccelerometer.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesBattery.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesConnectivity.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesGyroscope.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesHumidity.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesLight.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesMagnetic.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesNoise.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesPressure.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesProximity.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\class-use\SensorQueriesTemperature.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\package-frame.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\package-summary.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\package-tree.html
+* doc\ch\ethz\soms\nervous\android\sensorQueries\package-use.html
+* doc\constant-values.html
+* doc\deprecated-list.html
+* doc\help-doc.html
+* doc\index-files\
+* doc\index-files\index-1.html
+* doc\index-files\index-2.html
+* doc\index-files\index-3.html
+* doc\index-files\index-4.html
+* doc\index-files\index-5.html
+* doc\index-files\index-6.html
+* doc\index.html
+* doc\overview-frame.html
+* doc\overview-summary.html
+* doc\overview-tree.html
+* doc\package-list
+* doc\script.js
+* doc\stylesheet.css
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+protobuf-java-2.5.0.jar => com.google.protobuf:protobuf-java:2.5.0
+android-support-v4.jar => com.android.support:support-v4:21.0.3
+android-support-v7-appcompat.jar => com.android.support:appcompat-v7:21.0.3
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+protobuf-java-2.5.0.jar => version 2.5.0 in com.google.protobuf:protobuf-java:2.5.0
+
+Replaced Libraries with Dependencies:
+-------------------------------------
+The importer recognized the following library projects as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the source files in your project were of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the library replacement in the import wizard and try
+again:
+
+android-support-v7-appcompat => [com.android.support:appcompat-v7:21.0.3]
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In javanervousvm:
+* src\ => javanervousvm\src\main\java\
+In nervousnetrel:
+* AndroidManifest.xml => nervousnetrel\src\main\AndroidManifest.xml
+* assets\ => nervousnetrel\src\main\assets\
+* lint.xml => nervousnetrel\lint.xml
+* res\ => nervousnetrel\src\main\res\
+* src\ => nervousnetrel\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

@@ -66,3 +66,11 @@ nervousnet/.metadata/
 .idea
 .recommenders
 *.iml
+nervousnetrel_AndroidStudio/.gradle/
+nervousnetrel_AndroidStudio/nervousnetrel/build/
+nervousnetrel_AndroidStudio/javanervousvm/build/
+nervousnetrel_AndroidStudio/build/
+nervousnetrel_AndroidStudio/local.properties
+nervousnetrel_AndroidStudio/.idea/workspace.xml
+nervousnetrel_AndroidStudio/.idea/libraries/
+nervousnetrel_AndroidStudio/.DS_Store/
